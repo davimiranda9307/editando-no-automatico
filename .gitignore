@@ -3,3 +3,6 @@ Thumbs.db
 .vercel
 .netlify
 node_modules/
+
+# Cópia limpa do site para subir na hospedagem (gerada a partir da raiz)
+publicar/

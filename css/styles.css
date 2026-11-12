@@ -247,7 +247,8 @@ mark.ph {
 .phone-wrap { order: 4; }
 .hero__caption { order: 5; }
 .proof { order: 6; }
-.cta--hero { order: 7; margin-top: 4px; }
+/* O botão de compra fica acima do celular que "cai" (z-index 20); senão o celular cobria o botão no celular */
+.cta--hero { order: 7; margin-top: 4px; position: relative; z-index: 21; }
 
 .hero__title { font-size: clamp(30px, 5.4vw + 12px, 58px); text-align: center; }
 .hero__sub { max-width: 600px; margin: 0 auto; font-size: clamp(16px, 0.6vw + 14px, 20px); text-align: center; }
@@ -790,43 +791,8 @@ html:not(.js) .features .demo *, html:not(.js) .features .demo *::after { animat
 .fit__col--no .list li { color: var(--texto); }
 
 /* ==========================================================================
-   6. QUEM SOU EU
+   6. DEPOIMENTOS
    ========================================================================== */
-.about { display: grid; align-items: center; gap: 36px; }
-@media (min-width: 900px) { .about { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 64px; } }
-.about__photo { position: relative; justify-self: center; width: 100%; max-width: 420px; margin: 0; }
-.media--photo { aspect-ratio: 4 / 5; border: 1px solid var(--borda); border-radius: 20px; background: radial-gradient(70% 50% at 50% 30%, rgba(255, 107, 0, 0.12), transparent 70%), #141414; }
-.media--photo img { width: 100%; height: 100%; object-fit: cover; }
-.media--photo::after { top: 10px; bottom: auto; }
-.lower-third {
-  position: absolute;
-  bottom: 24px;
-  left: -8px;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  padding: 10px 16px 10px 14px;
-  border-left: 4px solid var(--laranja);
-  border-radius: 4px 10px 10px 4px;
-  background: rgba(10, 10, 10, 0.92);
-  box-shadow: 0 20px 40px -20px #000;
-}
-.lower-third__name { font: 700 20px/1.15 var(--f-titulo); text-transform: uppercase; color: var(--branco); }
-.lower-third__role { font-size: 12.5px; line-height: 1.4; }
-.about__text h2 { margin-bottom: 20px; }
-.niches { margin-top: 28px; }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
-.chips li { padding: 8px 14px; border: 1px solid var(--borda); border-radius: 999px; background: rgba(255, 107, 0, 0.06); font-size: 14px; color: var(--branco); }
-
-.backstage, .testimonials { margin-top: 72px; }
-.backstage .block-title, .testimonials .block-title { margin-top: 0; }
-.backstage__grid { display: grid; gap: 20px; }
-@media (min-width: 768px) { .backstage__grid { grid-template-columns: repeat(var(--cols, 3), 1fr); } }
-.shot { margin: 0; }
-.shot .media { aspect-ratio: 16 / 10; border: 1px solid var(--linha); border-radius: 14px; background: #141414; }
-.shot img { width: 100%; height: 100%; object-fit: cover; }
-.shot figcaption { margin-top: 10px; font-size: 14px; }
-
 .testimonials__grid { display: grid; gap: 16px; }
 @media (min-width: 768px) { .testimonials__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .testimonials__grid { grid-template-columns: repeat(3, 1fr); } }
@@ -837,7 +803,9 @@ html:not(.js) .features .demo *, html:not(.js) .features .demo *::after { animat
 .testimonial__name { display: block; font-weight: 600; color: var(--branco); }
 .testimonial__desc { display: block; font-size: 13px; }
 .testimonial__print { overflow: hidden; border-radius: 10px; }
-.testimonial__print img { width: 100%; }
+.testimonial__print img { display: block; width: 100%; height: auto; }
+/* Enquanto o print não existir, mostra um espaço vertical com o nome do arquivo esperado */
+.testimonial__print.is-missing { aspect-ratio: 4 / 5; border: 1px dashed var(--linha); }
 
 /* ==========================================================================
    7. OFERTA + GARANTIA

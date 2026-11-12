@@ -35,7 +35,7 @@ Tudo que estiver com `[PREENCHER]` ou `[CONFIRMAR]` aparece na página com **con
 | `DATA_FIM_OFERTA` | Fim do preço de lançamento, horário de Brasília. | `"2026-12-31T23:59:59-03:00"` |
 | `PARCELAMENTO_TEXTO` | Opcional. Parcelamento durante a oferta. Vazio = não aparece. | `"ou 12x de R$ X,XX no cartão"` |
 | `PARCELAMENTO_TEXTO_CHEIO` | Opcional. Parcelamento do preço cheio (depois do prazo). | |
-| `TEMPO_ANTES` / `TEMPO_DEPOIS` | Seu tempo de edição antes e hoje. Aparece no topo, nos números, no comparativo e na bio. | `"3 horas"` / `"10 minutos"` |
+| `TEMPO_ANTES` / `TEMPO_DEPOIS` | Seu tempo de edição antes e hoje. Aparece no topo, nos números e no comparativo. | `"3 horas"` / `"10 minutos"` |
 | `VIDEO_DEMO_URL` | Vídeo do topo (editado 100% pela IA). Vazio = placeholder. | `"assets/video/demo.mp4"` |
 | `VIDEO_BRUTO_URL` / `VIDEO_PRONTO_URL` | Vídeos do comparador. Vazio = placeholder. | `"assets/video/bruto.mp4"` |
 | `META_PIXEL_ID` | ID do Pixel (só números). Vazio = Pixel não carrega. | `"123456789012345"` |
@@ -49,9 +49,7 @@ Tudo que estiver com `[PREENCHER]` ou `[CONFIRMAR]` aparece na página com **con
 | `NUMEROS` | Cards de números da seção 2. `{TEMPO_ANTES}` e `{TEMPO_DEPOIS}` são trocados automaticamente. Lista vazia `[]` = bloco some. | |
 | `TIMELINE_EDICAO` | Marcações "o que a IA fez" do vídeo pronto (`m:ss`). Com o vídeo configurado, clicar na marcação leva o vídeo àquele trecho. | `{ tempo: "0:02", texto: "Cortou 4 segundos de silêncio" }` |
 | `TIMELINE_EH_EXEMPLO` | `true` mostra o aviso [CONFIRMAR] na linha do tempo. Mude para `false` quando colocar as marcações reais. | |
-| `CLIENTES_NICHOS` | Nichos que você já atendeu. Lista vazia = bloco some. | `["Estética", "Clínicas"]` |
-| `BASTIDORES` | Prints do processo com legenda. Lista vazia = bloco some. | |
-| `DEPOIMENTOS` | Depoimentos **reais**. Nunca invente. Lista vazia = bloco some. | ver comentário no arquivo |
+| `DEPOIMENTOS` | Seção "Depoimentos" (prints ou texto). Só depoimentos **reais**, nunca invente. Lista vazia `[]` = a seção some. | `{ imagem: "assets/img/depoimento-1.webp" }` |
 
 ### Domínio (fora do config.js)
 
@@ -72,12 +70,10 @@ Todos os arquivos vão com **exatamente estes nomes**. Enquanto um arquivo não 
 | `assets/img/poster-pronto.webp` | Capa do pronto | 720×1280 | 80 KB |
 | `assets/img/modulo-1.webp` … `modulo-5.webp` | Capas dos módulos | 600×900 (2:3), vertical | 60 KB cada |
 | `assets/img/bonus.webp` | Capa da aula bônus | 600×900 (2:3) | 60 KB |
-| `assets/img/davi.webp` | Seção "Quem sou eu" | 800×1000 (4:5) | 120 KB |
-| `assets/img/bastidor-1.webp` … `bastidor-3.webp` | Bastidores | 1200×750 (16:10) | 150 KB cada |
-| `assets/img/depoimento-N.webp` | Depoimentos (opcional) | foto 88×88 ou print até 800 px de largura | 100 KB |
+| `assets/img/depoimento-1.webp` … `depoimento-3.webp` | Seção "Depoimentos" | print até 800 px de largura (ou foto 88×88 no formato texto) | 100 KB cada |
 | `assets/img/og.webp` | Prévia ao compartilhar o link | 1200×630 | 100 KB (já existe uma versão pronta) |
 
-**Bastidores:** antes de subir os prints, **borre o nome e o logotipo da ferramenta de IA** em todas as imagens (nome na janela, na aba do navegador, em menus e em mensagens). O nome da ferramenta não pode aparecer em nenhum lugar da página.
+**Depoimentos:** se algum print mostrar o nome ou o logotipo da ferramenta de IA, **borre** antes de subir. O nome da ferramenta não pode aparecer em nenhum lugar da página.
 
 **Capas dos módulos:** o número e o nome do módulo já aparecem em texto abaixo da capa, então a imagem pode ser só a arte.
 
@@ -168,26 +164,25 @@ Inter e Space Grotesk estão sob a SIL Open Font License 1.1 (arquivos de licen�
 Abra a página e procure os trechos com contorno laranja tracejado. Lista completa:
 
 **No `js/config.js`**
-- [ ] `CHECKOUT_URL` (link da Kiwify)
+- [x] `CHECKOUT_URL` (link da Kiwify)
 - [ ] `TEMPO_ANTES` e `TEMPO_DEPOIS` (seus tempos reais de edição)
 - [ ] `NUMEROS`: "vídeos editados com esse método" e "horas economizadas por semana"
 - [ ] `TIMELINE_EDICAO` com as marcações reais do vídeo pronto, depois `TIMELINE_EH_EXEMPLO: false`
-- [ ] `TEMPO_DE_ACESSO`
+- [x] `TEMPO_DE_ACESSO` (vitalício)
 - [ ] `CUSTO_EDITOR_MES`
 - [ ] `EMAIL_CONTATO`
 - [ ] `INSTAGRAM_USER`
-- [ ] `BASTIDORES`: legendas dos 3 prints
-- [ ] `CLIENTES_NICHOS`: confirmar se são mesmo os nichos atendidos
-- [ ] Opcionais: `META_PIXEL_ID`, `WHATSAPP_NUMERO`, `PARCELAMENTO_TEXTO`, `DEPOIMENTOS`, URLs dos vídeos
+- [ ] `DEPOIMENTOS`: subir os prints reais (ou deixar `[]` para esconder a seção)
+- [ ] Opcionais: `META_PIXEL_ID`, `WHATSAPP_NUMERO`, `PARCELAMENTO_TEXTO`
 
 **No `index.html`**
 - [ ] `SEU-DOMINIO.com.br` (2 vezes, nas tags Open Graph)
-- [ ] Oferta: confirmar "atualizações das aulas quando a ferramenta mudar"
+- [x] Oferta: confirmar "atualizações das aulas quando a ferramenta mudar"
 
 **Nas páginas legais**
 - [ ] Política: provedor de hospedagem (Vercel ou Netlify), aviso de cookies, prazos de guarda
 - [ ] Termos: requisitos mínimos e compromisso de atualizações
 
-**Arquivos**: logo, 3 vídeos + 3 capas, 6 capas (5 módulos + bônus), foto, 3 prints (com o nome da ferramenta borrado). Ver a seção 3.
+**Arquivos**: logo, 6 capas (5 módulos + bônus) e os prints dos depoimentos. Os 3 vídeos e as capas deles já estão prontos. Ver a seção 3.
 
 **Kiwify**: em 01/01/2027, trocar o preço para R$ 147 também na Kiwify.

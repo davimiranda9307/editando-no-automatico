@@ -16,7 +16,7 @@ window.CONFIG = {
 
   // Link do checkout da Kiwify. Ex.: "https://pay.kiwify.com.br/AbC123x"
   // Enquanto estiver com [PREENCHER], os botões de compra só levam até a seção de oferta.
-  CHECKOUT_URL: "[PREENCHER]",
+  CHECKOUT_URL: "https://pay.kiwify.com.br/RlpsoaT",
 
   // Preços sem "R$". Se tiver centavos, use vírgula (ex.: "97,90").
   PRECO_OFERTA: "97",
@@ -39,7 +39,7 @@ window.CONFIG = {
   /* ============ PROVA: TEMPO DE EDIÇÃO ============ */
 
   // Quanto tempo você levava pra editar um vídeo e quanto leva hoje.
-  // Ex.: "3 horas" e "10 minutos". Aparecem no topo, nos números, no comparativo e na bio.
+  // Ex.: "3 horas" e "10 minutos". Aparecem no topo, nos números e no comparativo.
   TEMPO_ANTES: "1 a 2 horas",
   TEMPO_DEPOIS: "35 minutos",
 
@@ -77,7 +77,7 @@ window.CONFIG = {
   /* ============ CURSO ============ */
 
   // Escreva como deve aparecer depois da palavra "Acesso". Ex.: "por 1 ano" ou "vitalício".
-  TEMPO_DE_ACESSO: "[PREENCHER: por 1 ano / vitalício]",
+  TEMPO_DE_ACESSO: "vitalício",
 
   // Quanto um editor cobra por mês (coluna "Contratar editor" do comparativo).
   // Ex.: "a partir de R$ X por mês"
@@ -106,20 +106,16 @@ window.CONFIG = {
   // Troque para false quando colocar as marcações reais do seu vídeo.
   TIMELINE_EH_EXEMPLO: true,
 
-  // Nichos que você já atendeu (seção "Quem sou eu").
-  CLIENTES_NICHOS: ["Estética", "Salões", "Clínicas", "Comércio local"],
-
-  // Prints reais do processo (2 ou 3). Borre o nome da ferramenta nas imagens antes de subir.
-  // Sugestões de legenda: "O vídeo bruto entrando no fluxo", "Pedindo um ajuste em português normal".
-  BASTIDORES: [
-    { imagem: "assets/img/bastidor-1.webp", legenda: "[PREENCHER: legenda do print 1]" },
-    { imagem: "assets/img/bastidor-2.webp", legenda: "[PREENCHER: legenda do print 2]" },
-    { imagem: "assets/img/bastidor-3.webp", legenda: "[PREENCHER: legenda do print 3]" },
-  ],
-
-  // Depoimentos REAIS. Nunca invente.
-  // Texto:  { nome: "Nome", descricao: "@perfil ou profissão", texto: "O que a pessoa disse.", foto: "assets/img/depoimento-1.webp" }
+  // Seção "Depoimentos". Use só depoimentos REAIS. Nunca invente.
+  // Lista vazia [] = a seção inteira some da página.
   // Print:  { nome: "Nome", imagem: "assets/img/depoimento-1.webp" }
-  // (foto e descricao são opcionais)
-  DEPOIMENTOS: [],
+  // Texto:  { nome: "Nome", descricao: "@perfil ou profissão", texto: "O que a pessoa disse.", foto: "assets/img/depoimento-1.webp" }
+  // (nome, foto e descricao são opcionais)
+  // Os 3 abaixo são espaços reservados: suba os prints com esses nomes em assets/img/
+  // ou troque/remova as linhas.
+  DEPOIMENTOS: [
+    { imagem: "assets/img/depoimento-1.webp" },
+    { imagem: "assets/img/depoimento-2.webp" },
+    { imagem: "assets/img/depoimento-3.webp" },
+  ],
 };

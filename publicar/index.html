@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Editando no Automático — grave, a IA edita, você posta</title>
+  <meta name="description" content="Curso online pra você deixar a IA editar seus vídeos curtos: cortes, legendas dinâmicas, zoom, efeitos sonoros e animações feitos automaticamente. Você grava, a IA edita, você posta.">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="color-scheme" content="dark">
+
+  <!-- Open Graph: troque SEU-DOMINIO.com.br pelo domínio real (veja o README) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Editando no Automático">
+  <meta property="og:title" content="Editando no Automático — grave, a IA edita, você posta">
+  <meta property="og:description" content="Não é curso de edição. É curso pra você parar de editar. Cortes, legendas, zoom, efeitos sonoros e animações feitos pela IA.">
+  <meta property="og:url" content="https://SEU-DOMINIO.com.br/">
+  <meta property="og:image" content="https://SEU-DOMINIO.com.br/assets/img/og.webp">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Editando no Automático: grave, a IA edita, você posta.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/space-grotesk-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/poster-demo.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="dns-prefetch" href="https://pay.kiwify.com.br">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+  <script src="js/config.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Editando no Automático",
+    "description": "Curso online que ensina a deixar a IA editar os próprios vídeos curtos: você grava, a IA edita, você posta.",
+    "inLanguage": "pt-BR",
+    "provider": { "@type": "Person", "name": "Davi Miranda" }
+  }
+  </script>
+</head>
+<body>
+
+<!-- Ícones (sprite SVG) -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.6v12.8a1 1 0 0 0 1.5.86l10.3-6.4a1 1 0 0 0 0-1.72L9.5 4.74A1 1 0 0 0 8 5.6z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><rect x="6.5" y="5" width="4" height="14" rx="1"/><rect x="13.5" y="5" width="4" height="14" rx="1"/></symbol>
+  <symbol id="i-sound-off" viewBox="0 0 24 24"><path d="M3.5 9.5h3.5L11.5 5.5v13L7 14.5H3.5z"/><path d="M15.5 9.5l5 5M20.5 9.5l-5 5"/></symbol>
+  <symbol id="i-sound-on" viewBox="0 0 24 24"><path d="M3.5 9.5h3.5L11.5 5.5v13L7 14.5H3.5z"/><path d="M15.5 9a4.5 4.5 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11"/></symbol>
+  <symbol id="i-rec" viewBox="0 0 24 24"><rect x="2.5" y="6" width="13.5" height="12" rx="2.5"/><path d="M16 10.5l5.5-3.2v9.4L16 13.5"/><circle cx="7" cy="10.5" r="1.3"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M11 3.5l1.9 5.1 5.1 1.9-5.1 1.9L11 17.5l-1.9-5.1L4 10.5l5.1-1.9z"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3L10.5 13.5"/><path d="M21 3l-6.5 18-4-7.5L3 9.5z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></symbol>
+  <symbol id="i-captions" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M6.5 11h6M14.5 11h3M6.5 15h3M11.5 15h6"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="9" cy="10" r="1.8"/><path d="M21 15.5l-4.5-4.5L7 20"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></symbol>
+  <symbol id="i-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6.5" r="2.8"/><circle cx="6" cy="17.5" r="2.8"/><path d="M8.4 8l11.6 10M8.4 16L20 6"/></symbol>
+  <symbol id="i-note" viewBox="0 0 24 24"><path d="M9 18V5.5l10-2V16"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6 15h4"/></symbol>
+  <symbol id="i-pix" viewBox="0 0 24 24"><path d="M12 2.8l9.2 9.2-9.2 9.2L2.8 12z"/><path d="M7.5 12l2.6-2.6h3.8L16.5 12l-2.6 2.6h-3.8z"/></symbol>
+  <symbol id="i-barcode" viewBox="0 0 24 24"><path d="M3.5 6v12M6.5 6v12M9 6v12M12.5 6v12M15 6v12M18 6v12M20.5 6v12"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.6-3.4 8.3-8 9-4.6-.7-8-4.4-8-9V6z"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13.5 6.5L19 12l-5.5 5.5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.5-4.3a8.5 8.5 0 1 1 15.5-4.6z"/><path d="M9 8.6c.3-.4.8-.4 1.1 0l.8 1.4c.2.3.1.7-.1 1l-.5.5a5 5 0 0 0 2.4 2.4l.5-.5c.3-.2.7-.3 1-.1l1.4.8c.4.3.4.8 0 1.1l-.7.6c-.6.5-1.5.6-2.3.2a9 9 0 0 1-4.1-4.1c-.4-.8-.3-1.7.2-2.3z"/></symbol>
+  <symbol id="wave" viewBox="0 0 400 40"><path d="M1 16.3h2v7.3h-2zM5 15.1h2v9.8h-2zM9 11.9h2v16.2h-2zM13 12.5h2v14.9h-2zM17 13.1h2v13.8h-2zM21 8.0h2v24.0h-2zM25 12.0h2v16.1h-2zM29 11.4h2v17.3h-2zM33 10.9h2v18.1h-2zM37 10.8h2v18.4h-2zM41 10.7h2v18.7h-2zM45 14.6h2v10.7h-2zM49 12.0h2v16.1h-2zM53 12.7h2v14.5h-2zM57 13.3h2v13.3h-2zM61 12.7h2v14.6h-2zM65 12.7h2v14.6h-2zM69 6.8h2v26.5h-2zM73 10.6h2v18.7h-2zM77 7.6h2v24.8h-2zM81 3.7h2v32.6h-2zM85 9.2h2v21.5h-2zM89 10.6h2v18.8h-2zM93 9.9h2v20.1h-2zM97 8.0h2v24.1h-2zM101 11.6h2v16.7h-2zM105 14.0h2v12.0h-2zM109 11.6h2v16.7h-2zM113 15.1h2v9.8h-2zM117 15.4h2v9.2h-2zM121 14.8h2v10.3h-2zM125 14.9h2v10.2h-2zM129 14.0h2v12.0h-2zM133 15.8h2v8.5h-2zM137 12.3h2v15.4h-2zM141 11.8h2v16.5h-2zM145 12.2h2v15.6h-2zM149 10.7h2v18.5h-2zM153 11.8h2v16.4h-2zM157 5.9h2v28.2h-2zM161 10.9h2v18.2h-2zM165 9.0h2v22.1h-2zM169 6.7h2v26.5h-2zM173 12.4h2v15.2h-2zM177 13.3h2v13.4h-2zM181 13.1h2v13.9h-2zM185 11.8h2v16.4h-2zM189 13.5h2v13.1h-2zM193 14.2h2v11.6h-2zM197 9.5h2v21.0h-2zM201 12.1h2v15.8h-2zM205 11.7h2v16.6h-2zM209 8.7h2v22.6h-2zM213 8.6h2v22.9h-2zM217 6.8h2v26.4h-2zM221 11.6h2v16.9h-2zM225 7.5h2v25.0h-2zM229 9.5h2v21.0h-2zM233 12.9h2v14.3h-2zM237 13.1h2v13.8h-2zM241 15.4h2v9.2h-2zM245 13.3h2v13.4h-2zM249 16.0h2v8.0h-2zM253 15.0h2v10.0h-2zM257 13.2h2v13.5h-2zM261 15.7h2v8.7h-2zM265 15.0h2v10.0h-2zM269 13.4h2v13.2h-2zM273 10.8h2v18.4h-2zM277 11.3h2v17.3h-2zM281 11.6h2v16.8h-2zM285 4.6h2v30.8h-2zM289 8.8h2v22.4h-2zM293 9.8h2v20.3h-2zM297 6.6h2v26.8h-2zM301 8.5h2v23.0h-2zM305 7.8h2v24.3h-2zM309 12.7h2v14.7h-2zM313 9.9h2v20.2h-2zM317 11.5h2v17.0h-2zM321 14.2h2v11.6h-2zM325 13.2h2v13.6h-2zM329 14.5h2v11.0h-2zM333 10.8h2v18.5h-2zM337 13.4h2v13.1h-2zM341 10.8h2v18.4h-2zM345 7.1h2v25.7h-2zM349 12.4h2v15.3h-2zM353 11.6h2v16.9h-2zM357 10.8h2v18.4h-2zM361 10.6h2v18.7h-2zM365 13.3h2v13.4h-2zM369 15.0h2v9.9h-2zM373 12.8h2v14.4h-2zM377 15.3h2v9.3h-2zM381 15.9h2v8.3h-2zM385 14.0h2v12.1h-2zM389 14.8h2v10.3h-2zM393 13.7h2v12.5h-2zM397 15.3h2v9.5h-2z"/></symbol>
+</svg>
+
+<main>
+
+  <!-- ===================== 1. HERO ===================== -->
+  <section class="hero" id="inicio" aria-labelledby="hero-titulo">
+    <div class="container">
+      <div class="logo hero__logo">
+        <img class="logo__img" src="assets/img/logo-editando-no-automatico.png" alt="Editando no Automático" width="200" height="40" data-ph>
+        <span class="logo__text">Editando no <span class="logo__accent">Automático</span></span>
+      </div>
+
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <h1 class="hero__title" id="hero-titulo">Grave, deixe <span class="hl">a IA editar</span> e poste. Nunca mais passe horas na timeline.</h1>
+          <p class="hero__sub">Cortes, legendas dinâmicas, zoom, efeitos sonoros e até animações do que você fala, feitos automaticamente. Sem saber editar e sem pagar editor.</p>
+
+          <p class="proof" data-requires="TEMPO_ANTES TEMPO_DEPOIS">
+            <span class="proof__label">Tempo de edição</span>
+            <span class="proof__line">
+              <span class="proof__before" data-cfg="TEMPO_ANTES">1 a 2 horas</span>
+              <svg class="i proof__arrow" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">para</span>
+              <span class="proof__after" data-cfg="TEMPO_DEPOIS">35 minutos</span>
+              <span class="proof__unit">por vídeo</span>
+            </span>
+          </p>
+
+          <div class="cta cta--hero">
+            <a class="btn" href="#oferta" data-checkout>Quero editar no automático</a>
+            <p class="secure"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg>Compra segura pela Kiwify • Acesso imediato • 7 dias de garantia</p>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <p class="badge hero__badge"><span class="badge__dot" aria-hidden="true"></span>O vídeo abaixo foi editado 100% pela IA</p>
+
+          <div class="phone-wrap">
+            <div class="phone">
+              <div class="phone__screen" data-video-box="VIDEO_DEMO_URL">
+                <video class="phone__video" id="hero-video" muted playsinline loop preload="none" poster="assets/img/poster-demo.webp" width="360" height="640" aria-label="Vídeo de demonstração editado 100% pela IA"></video>
+                <div class="video-ph" hidden>
+                  <svg class="i i--fill video-ph__icon" aria-hidden="true"><use href="#i-play"/></svg>
+                  <strong>Vídeo de demonstração</strong>
+                  <code>assets/video/demo.mp4</code>
+                  <span>Configure VIDEO_DEMO_URL em js/config.js<br>Capa: assets/img/poster-demo.webp</span>
+                </div>
+                <button class="bigplay" type="button" data-hero-bigplay hidden aria-label="Reproduzir vídeo de demonstração">
+                  <svg class="i i--fill" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+                <div class="phone__controls" data-hero-controls hidden>
+                  <button class="vbtn vbtn--round" type="button" data-hero-toggle aria-label="Pausar vídeo">
+                    <svg class="i i--fill" aria-hidden="true"><use href="#i-pause"/></svg>
+                  </button>
+                  <button class="vbtn" type="button" data-hero-sound aria-pressed="false">
+                    <svg class="i" aria-hidden="true"><use href="#i-sound-off"/></svg><span>Ativar som</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <span class="float-chip float-chip--caption" aria-hidden="true">você grava, a IA <b>edita</b></span>
+            <span class="float-chip float-chip--cut" aria-hidden="true"><svg class="i"><use href="#i-scissors"/></svg><svg class="wave"><use href="#wave"/></svg></span>
+          </div>
+          <p class="hero__caption">Ninguém tocou na timeline pra editar esse vídeo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-tl" aria-hidden="true">
+      <div class="container">
+        <div class="tl">
+          <div class="tl__ruler"><span>00:00</span><span>00:05</span><span>00:10</span><span>00:15</span><span>00:20</span><span>00:25</span></div>
+          <div class="tl__track tl__track--clips"><i></i><i></i><i class="on"></i><i></i><i></i><i></i></div>
+          <div class="tl__track tl__track--wave"><svg class="wave" viewBox="0 0 400 40" preserveAspectRatio="none"><use href="#wave"/></svg><svg class="wave" viewBox="0 0 400 40" preserveAspectRatio="none"><use href="#wave"/></svg></div>
+          <span class="tl__playhead"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 2. A PROVA: BRUTO X PRONTO ===================== -->
+  <section class="sec sec--alt" id="prova" aria-labelledby="prova-titulo">
+    <div class="container">
+      <header class="sec__head">
+        <p class="eyebrow">A prova</p>
+        <h2 id="prova-titulo">Esse é o vídeo que eu gravei. Esse é o que a IA me devolveu.</h2>
+        <p class="sec__lead">Mesma gravação, do jeito que saiu da câmera. A diferença é só o que a IA fez com ela.</p>
+      </header>
+
+      <div class="compare" data-compare>
+        <div class="compare__toggle" role="group" aria-label="Escolha qual vídeo ver">
+          <button class="seg" type="button" data-show="pronto" aria-pressed="true">Pronto</button>
+          <button class="seg" type="button" data-show="bruto" aria-pressed="false">Bruto</button>
+        </div>
+
+        <div class="compare__grid">
+          <figure class="compare__item is-active" data-item="pronto">
+            <figcaption class="compare__label"><span class="tag tag--on">Pronto</span> O que a IA me devolveu</figcaption>
+            <div class="frame frame--on" data-video-box="VIDEO_PRONTO_URL">
+              <video class="frame__video" id="video-pronto" controls playsinline preload="none" data-poster="assets/img/poster-pronto.webp" width="360" height="640" aria-label="Vídeo pronto, editado pela IA"></video>
+              <div class="video-ph" hidden>
+                <svg class="i i--fill video-ph__icon" aria-hidden="true"><use href="#i-play"/></svg>
+                <strong>Vídeo pronto</strong>
+                <code>assets/video/pronto.mp4</code>
+                <span>Configure VIDEO_PRONTO_URL em js/config.js<br>Capa: assets/img/poster-pronto.webp</span>
+              </div>
+            </div>
+          </figure>
+
+          <figure class="compare__item" data-item="bruto">
+            <figcaption class="compare__label"><span class="tag">Bruto</span> Como eu gravei</figcaption>
+            <div class="frame" data-video-box="VIDEO_BRUTO_URL">
+              <video class="frame__video" controls playsinline preload="none" data-poster="assets/img/poster-bruto.webp" width="360" height="640" aria-label="Vídeo bruto, do jeito que foi gravado"></video>
+              <div class="video-ph" hidden>
+                <svg class="i i--fill video-ph__icon" aria-hidden="true"><use href="#i-play"/></svg>
+                <strong>Vídeo bruto</strong>
+                <code>assets/video/bruto.mp4</code>
+                <span>Configure VIDEO_BRUTO_URL em js/config.js<br>Capa: assets/img/poster-bruto.webp</span>
+              </div>
+            </div>
+          </figure>
+        </div>
+      </div>
+
+      <div class="cta cta--tight">
+        <a class="btn" href="#oferta" data-checkout>Quero editar no automático</a>
+        <p class="secure"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg>Compra segura pela Kiwify • Acesso imediato • 7 dias de garantia</p>
+      </div>
+
+      <div class="edit-log card" data-block="timeline" hidden>
+        <div class="edit-log__head">
+          <h3>O que a IA fez nesse vídeo</h3>
+          <p class="edit-log__hint" data-timeline-hint hidden>Toque numa marcação pra ver o trecho no vídeo pronto.</p>
+          <p class="edit-log__note" data-timeline-example hidden>[CONFIRMAR: marcações de exemplo. Troque pelas do seu vídeo real em js/config.js]</p>
+        </div>
+        <div class="track" aria-hidden="true">
+          <svg class="wave track__wave" viewBox="0 0 400 40" preserveAspectRatio="none"><use href="#wave"/></svg>
+          <div class="track__marks" data-track-marks></div>
+        </div>
+        <ol class="edit-log__list" data-timeline-list></ol>
+      </div>
+
+      <div class="stats" data-block="numeros" hidden>
+        <h3 class="sr-only">Os números</h3>
+        <ul class="stats__grid" data-numeros-list></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3. A DOR + NÃO É CURSO DE EDIÇÃO ===================== -->
+  <section class="sec" id="dor" aria-labelledby="dor-titulo">
+    <div class="container">
+      <header class="sec__head">
+        <p class="eyebrow">A rotina de quem edita sozinho</p>
+        <h2 id="dor-titulo">Gravar é rápido. O que trava é a edição.</h2>
+      </header>
+
+      <ul class="pains">
+        <li class="pain card">
+          <span class="pain__icon" aria-hidden="true"><svg class="i"><use href="#i-moon"/></svg></span>
+          <p>Uma <strong>noite inteira</strong> pra editar 30 segundos de vídeo.</p>
+        </li>
+        <li class="pain card">
+          <span class="pain__icon" aria-hidden="true"><svg class="i"><use href="#i-captions"/></svg></span>
+          <p>Legenda colocada <strong>palavra por palavra</strong>, acertando o tempo de cada uma.</p>
+        </li>
+        <li class="pain card">
+          <span class="pain__icon" aria-hidden="true"><svg class="i"><use href="#i-image"/></svg></span>
+          <p>Vídeo gravado e <strong>parado na galeria</strong>, porque não sobrou tempo pra editar.</p>
+        </li>
+        <li class="pain card">
+          <span class="pain__icon" aria-hidden="true"><svg class="i"><use href="#i-clock"/></svg></span>
+          <p>Editor que <strong>atrasa a entrega</strong> ou cobra caro por cada vídeo.</p>
+        </li>
+      </ul>
+
+      <div class="statement">
+        <p class="statement__text">Não é curso de edição. <span class="statement__hl">É curso pra você parar de editar.</span></p>
+        <p class="statement__sub">Você não vai aprender a mexer em timeline, corte ou efeito. Vai configurar uma ferramenta de IA uma vez só e, a partir daí, entregar o vídeo bruto e receber o vídeo pronto.</p>
+      </div>
+
+      <div class="versus">
+        <h3 class="versus__title">Três jeitos de ter o seu vídeo editado</h3>
+        <div class="versus__grid">
+          <div class="vs card">
+            <h4 class="vs__name">Editar sozinho</h4>
+            <div class="vs__row"><span class="vs__k">Tempo por vídeo</span><span class="vs__v">Horas na timeline</span></div>
+            <div class="vs__row"><span class="vs__k">Custo mensal</span><span class="vs__v">A mensalidade do app de edição</span></div>
+            <div class="vs__row"><span class="vs__k">Depende de alguém?</span><span class="vs__v">De você ter tempo livre</span></div>
+            <div class="vs__row"><span class="vs__k">Consistência de postagem</span><span class="vs__v">Cai quando a semana aperta</span></div>
+          </div>
+          <div class="vs card">
+            <h4 class="vs__name">Contratar editor</h4>
+            <div class="vs__row"><span class="vs__k">Tempo por vídeo</span><span class="vs__v">O prazo de entrega dele</span></div>
+            <div class="vs__row"><span class="vs__k">Custo mensal</span><span class="vs__v" data-cfg="CUSTO_EDITOR_MES">R$ 500 por mês</span></div>
+            <div class="vs__row"><span class="vs__k">Depende de alguém?</span><span class="vs__v">Sim: o vídeo só sai quando ele entrega</span></div>
+            <div class="vs__row"><span class="vs__k">Consistência de postagem</span><span class="vs__v">Segue a agenda de outra pessoa</span></div>
+          </div>
+          <div class="vs vs--on card">
+            <h4 class="vs__name">Editando no Automático</h4>
+            <div class="vs__row"><span class="vs__k">Tempo por vídeo</span><span class="vs__v">Em média <span data-cfg="TEMPO_DEPOIS">35 minutos</span></span></div>
+            <div class="vs__row"><span class="vs__k">Custo mensal</span><span class="vs__v">O plano mensal da ferramenta de IA</span></div>
+            <div class="vs__row"><span class="vs__k">Depende de alguém?</span><span class="vs__v">Não: você edita quando quiser</span></div>
+            <div class="vs__row"><span class="vs__k">Consistência de postagem</span><span class="vs__v">Você edita a semana inteira de uma vez</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 4. COMO FUNCIONA ===================== -->
+  <section class="sec sec--alt" id="como-funciona" aria-labelledby="como-titulo">
+    <div class="container">
+      <header class="sec__head">
+        <p class="eyebrow">Como funciona</p>
+        <h2 id="como-titulo">Você grava. A IA edita. Você posta.</h2>
+        <p class="sec__lead">A configuração é feita uma vez só. Depois disso, todo vídeo segue o mesmo caminho.</p>
+      </header>
+
+      <ol class="steps">
+        <li class="step card">
+          <span class="step__icon" aria-hidden="true"><svg class="i"><use href="#i-rec"/></svg></span>
+          <span class="step__num" aria-hidden="true">01</span>
+          <h3>Grave do jeito certo</h3>
+          <p>Você grava como já grava hoje, com alguns cuidados simples que fazem a IA acertar cortes, legendas e ilustrações.</p>
+        </li>
+        <li class="step card">
+          <span class="step__icon" aria-hidden="true"><svg class="i"><use href="#i-spark"/></svg></span>
+          <span class="step__num" aria-hidden="true">02</span>
+          <h3>A IA edita</h3>
+          <p>Você entrega o vídeo bruto. A IA corta, legenda, aplica zoom, efeitos e animações no padrão da sua marca.</p>
+        </li>
+        <li class="step card">
+          <span class="step__icon" aria-hidden="true"><svg class="i"><use href="#i-send"/></svg></span>
+          <span class="step__num" aria-hidden="true">03</span>
+          <h3>Revise e poste</h3>
+          <p>Você assiste, pede um ajuste em português normal se precisar, e posta.</p>
+        </li>
+      </ol>
+
+      <h3 class="block-title">O que a IA faz por você</h3>
+      <ul class="features" data-anim>
+        <li class="feature card">
+          <div class="demo demo--cut" aria-hidden="true">
+            <div class="cut">
+              <span class="cut__a"><svg class="wave" viewBox="0 0 400 40" preserveAspectRatio="none"><use href="#wave"/></svg></span>
+              <span class="cut__gap"><svg class="i"><use href="#i-scissors"/></svg></span>
+              <span class="cut__b"><svg class="wave" viewBox="0 0 400 40" preserveAspectRatio="none"><use href="#wave"/></svg></span>
+            </div>
+            <span class="demo__label">silêncio</span>
+          </div>
+          <h4>Cortes automáticos</h4>
+          <p>Silêncios, erros e repetições saem sem você marcar nada.</p>
+        </li>
+        <li class="feature card">
+          <div class="demo demo--caps" aria-hidden="true">
+            <p class="caps"><span class="w" data-w="você">você</span> <span class="w" data-w="grava,">grava,</span> <span class="w" data-w="a IA">a IA</span> <span class="w" data-w="edita">edita</span></p>
+          </div>
+          <h4>Legendas dinâmicas</h4>
+          <p>Palavra por palavra, sincronizadas com a sua fala e com destaque nas palavras-chave.</p>
+        </li>
+        <li class="feature card">
+          <div class="demo demo--zoom" aria-hidden="true">
+            <div class="zoom"><span class="zoom__subject"><i class="zoom__head"></i><i class="zoom__body"></i></span></div>
+            <span class="zoom__corners"></span>
+          </div>
+          <h4>Zoom nos momentos certos</h4>
+          <p>Aproximação nas frases de ênfase, pra prender a atenção onde importa.</p>
+        </li>
+        <li class="feature card">
+          <div class="demo demo--sfx" aria-hidden="true">
+            <div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <span class="sfx__note"><svg class="i"><use href="#i-note"/></svg></span>
+          </div>
+          <h4>Efeitos sonoros</h4>
+          <p>Sons nas transições e nos pontos de destaque, sem você procurar arquivo.</p>
+        </li>
+        <li class="feature card">
+          <div class="demo demo--anim" aria-hidden="true">
+            <span class="anim__say">“…e aí veio a ideia”</span>
+            <span class="anim__pop"><svg class="i"><use href="#i-bulb"/></svg></span>
+          </div>
+          <h4>Animações do que você fala</h4>
+          <p>Ilustrações e animações que aparecem quando você cita algo.</p>
+        </li>
+        <li class="feature card">
+          <div class="demo demo--brand" aria-hidden="true">
+            <span class="brand__sw"><i></i><i></i><i></i></span>
+            <span class="brand__aa">Aa</span>
+            <span class="brand__cap">sua <b>marca</b></span>
+          </div>
+          <h4>Sua marca em todo vídeo</h4>
+          <p>Sua fonte, suas cores e seu estilo de legenda em todos os vídeos.</p>
+        </li>
+      </ul>
+
+      <div class="cta">
+        <a class="btn" href="#oferta" data-checkout>Quero editar no automático</a>
+        <p class="secure"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg>Compra segura pela Kiwify • Acesso imediato • 7 dias de garantia</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 5. O QUE TEM DENTRO + PARA QUEM É ===================== -->
+  <section class="sec" id="conteudo" aria-labelledby="conteudo-titulo">
+    <div class="container">
+      <header class="sec__head">
+        <p class="eyebrow">O que tem dentro</p>
+        <h2 id="conteudo-titulo">5 módulos e 1 aula bônus</h2>
+        <p class="sec__lead">Na área de membros da Kiwify, na ordem em que você vai aplicar.</p>
+      </header>
+
+      <div class="shelf" role="region" aria-label="Módulos do curso (role para o lado para ver todos)" tabindex="0">
+        <ol class="shelf__list">
+          <li class="module">
+            <div class="media cover" data-file="assets/img/modulo-1.webp">
+              <img src="assets/img/modulo-1.webp" alt="" width="600" height="900" loading="lazy" decoding="async" data-ph>
+              <span class="cover__num" aria-hidden="true">01</span>
+            </div>
+            <p class="module__kicker">Módulo 1</p>
+            <h3 class="module__title">Primeiros Passos</h3>
+            <p class="module__desc">O que vai acontecer no curso e como instalar a ferramenta de IA no seu computador.</p>
+          </li>
+          <li class="module">
+            <div class="media cover" data-file="assets/img/modulo-2.webp">
+              <img src="assets/img/modulo-2.webp" alt="" width="600" height="900" loading="lazy" decoding="async" data-ph>
+              <span class="cover__num" aria-hidden="true">02</span>
+            </div>
+            <p class="module__kicker">Módulo 2</p>
+            <h3 class="module__title">Como Gravar</h3>
+            <p class="module__desc">Dicas de gravação pra seus vídeos ficarem bons e a IA acertar a edição.</p>
+          </li>
+          <li class="module">
+            <div class="media cover" data-file="assets/img/modulo-3.webp">
+              <img src="assets/img/modulo-3.webp" alt="" width="600" height="900" loading="lazy" decoding="async" data-ph>
+              <span class="cover__num" aria-hidden="true">03</span>
+            </div>
+            <p class="module__kicker">Módulo 3</p>
+            <h3 class="module__title">A Configuração</h3>
+            <p class="module__desc">O passo a passo de toda a configuração da IA, feito uma vez só, mesmo pra quem nunca mexeu em nada técnico.</p>
+          </li>
+          <li class="module">
+            <div class="media cover" data-file="assets/img/modulo-4.webp">
+              <img src="assets/img/modulo-4.webp" alt="" width="600" height="900" loading="lazy" decoding="async" data-ph>
+              <span class="cover__num" aria-hidden="true">04</span>
+            </div>
+            <p class="module__kicker">Módulo 4</p>
+            <h3 class="module__title">O Primeiro Vídeo</h3>
+            <p class="module__desc">Do vídeo bruto ao vídeo pronto, ao vivo, sem abrir timeline.</p>
+          </li>
+          <li class="module">
+            <div class="media cover" data-file="assets/img/modulo-5.webp">
+              <img src="assets/img/modulo-5.webp" alt="" width="600" height="900" loading="lazy" decoding="async" data-ph>
+              <span class="cover__num" aria-hidden="true">05</span>
+            </div>
+            <p class="module__kicker">Módulo 5</p>
+            <h3 class="module__title">Últimos Ajustes</h3>
+            <p class="module__desc">Como corrigir sem timeline e editar a semana inteira de vídeos de uma vez.</p>
+          </li>
+          <li class="module module--bonus">
+            <div class="media cover" data-file="assets/img/bonus.webp">
+              <img src="assets/img/bonus.webp" alt="" width="600" height="900" loading="lazy" decoding="async" data-ph>
+              <span class="cover__num" aria-hidden="true">+</span>
+            </div>
+            <p class="module__kicker">Aula bônus</p>
+            <h3 class="module__title">O Roteiro Também no Automático</h3>
+            <p class="module__desc">Como deixar o roteiro dos seus vídeos no automático também, antes mesmo de gravar.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="fit">
+        <div class="fit__col card fit__col--yes">
+          <h3>Para quem é</h3>
+          <ul class="list">
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Influencers e criadores de conteúdo</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Donos de marca e pequenos empreendedores que gravam o próprio conteúdo</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Quem edita os próprios vídeos e não aguenta mais</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Quem paga editor e quer ter autonomia</li>
+          </ul>
+        </div>
+        <div class="fit__col card fit__col--no">
+          <h3>Para quem não é</h3>
+          <ul class="list">
+            <li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg>Editores profissionais que querem aprender técnicas de edição</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg>Quem não pretende gravar nenhum vídeo</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg>Quem procura um app de um clique, sem configurar nada</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cta">
+        <a class="btn" href="#oferta" data-checkout>Quero editar no automático</a>
+        <p class="secure"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg>Compra segura pela Kiwify • Acesso imediato • 7 dias de garantia</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 6. DEPOIMENTOS (some se DEPOIMENTOS estiver vazio no config.js) ===================== -->
+  <section class="sec sec--alt" id="depoimentos" aria-labelledby="depoimentos-titulo" data-block="depoimentos" hidden>
+    <div class="container">
+      <header class="sec__head">
+        <p class="eyebrow">Depoimentos</p>
+        <h2 id="depoimentos-titulo">O que estão falando</h2>
+      </header>
+      <div class="testimonials__grid" data-depoimentos-list></div>
+    </div>
+  </section>
+
+  <!-- ===================== 7. OFERTA + GARANTIA ===================== -->
+  <section class="sec offer" id="oferta" aria-labelledby="oferta-titulo">
+    <div class="container">
+      <header class="sec__head">
+        <p class="eyebrow">Oferta</p>
+        <h2 id="oferta-titulo">Tudo que você recebe</h2>
+      </header>
+
+      <div class="offer__grid">
+        <div class="offer__includes card">
+          <h3 class="mini-title">Está incluso</h3>
+          <ul class="list list--big">
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span><strong>5 módulos</strong>: da instalação da ferramenta de IA à rotina de editar a semana inteira de uma vez</span></li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Aula bônus O Roteiro Também no Automático</strong>: o roteiro dos seus vídeos no automático, antes de gravar</span></li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Acesso <span data-cfg="TEMPO_DE_ACESSO">vitalício</span></strong> à área de membros da Kiwify</span></li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Atualizações das aulas</strong> quando a ferramenta mudar</span></li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span><strong>7 dias de garantia</strong> pela Kiwify</span></li>
+          </ul>
+        </div>
+
+        <div class="price-card card">
+          <p class="badge badge--solid" data-offer-only>Preço de lançamento</p>
+
+          <div class="price">
+            <div class="price__offer" data-offer-only>
+              <span class="price__word">de</span>
+              <s class="price__old" data-price="cheio">R$ 147</s>
+              <span class="price__word">por</span>
+              <strong class="price__new" data-price="oferta">R$ 97</strong>
+            </div>
+            <strong class="price__full" data-full-only data-price="cheio" hidden>R$ 147</strong>
+            <p class="price__parc" data-parcelamento hidden></p>
+            <p class="price__terms">pagamento único • acesso imediato</p>
+          </div>
+
+          <p class="price__deadline" data-offer-only>Preço de lançamento válido até <span data-date="fim">31/12/2026</span>. A partir de <span data-date="cheio">01/01/2027</span>, o curso passa para <span data-price="cheio">R$ 147</span>.</p>
+
+          <div class="countdown" data-offer-only data-countdown role="timer" aria-label="Tempo restante do preço de lançamento">
+            <p class="countdown__label">O preço de lançamento termina em</p>
+            <div class="countdown__grid">
+              <span class="cd"><span class="cd__n" data-cd="d">--</span><span class="cd__u">dias</span></span>
+              <span class="cd"><span class="cd__n" data-cd="h">--</span><span class="cd__u">horas</span></span>
+              <span class="cd"><span class="cd__n" data-cd="m">--</span><span class="cd__u">min</span></span>
+            </div>
+          </div>
+
+          <p class="price__pitch">Menos do que um editor cobra por um único vídeo, pra você nunca mais depender de ninguém pra postar.</p>
+
+          <div class="cta cta--tight">
+            <a class="btn btn--block" href="#oferta" data-checkout>Quero editar no automático</a>
+            <p class="secure"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg>Compra segura pela Kiwify • Acesso imediato • 7 dias de garantia</p>
+          </div>
+
+          <ul class="payments" aria-label="Formas de pagamento">
+            <li><svg class="i" aria-hidden="true"><use href="#i-pix"/></svg>Pix</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-card"/></svg>Cartão</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-barcode"/></svg>Boleto</li>
+          </ul>
+        </div>
+        <div class="guarantee card">
+          <svg class="seal" viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="56" class="seal__ring"/>
+            <circle cx="60" cy="60" r="46" class="seal__inner"/>
+            <text x="60" y="66" text-anchor="middle" class="seal__n">7</text>
+            <text x="60" y="88" text-anchor="middle" class="seal__t">DIAS</text>
+          </svg>
+          <div>
+            <h3>7 dias de garantia</h3>
+            <p>Assista, aplique e, se não gostar, peça 100% do seu dinheiro de volta pela Kiwify. O risco é todo meu.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="logo logo--sm">
+        <img class="logo__img" src="assets/img/logo-editando-no-automatico.png" alt="Editando no Automático" width="160" height="32" data-ph>
+        <span class="logo__text">Editando no <span class="logo__accent">Automático</span></span>
+      </div>
+      <nav class="footer__nav" aria-label="Links do rodapé">
+        <a href="politica-de-privacidade.html">Política de Privacidade</a>
+        <a href="termos-de-uso.html">Termos de Uso</a>
+        <a href="#" data-instagram hidden>Instagram</a>
+      </nav>
+    </div>
+    <p class="footer__company"><span data-cfg="RAZAO_SOCIAL_OU_NOME">Davi Miranda</span></p>
+    <p class="footer__legal">Os resultados e o tempo de edição variam conforme o vídeo e a aplicação do método. O curso utiliza ferramentas de terceiros com planos pagos, não inclusos no valor do curso. Este site não é afiliado ao Instagram, Meta ou TikTok.</p>
+    <p class="footer__copy">© <span data-year>2026</span> Editando no Automático. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- Atalhos fixos: barra de compra (só no celular) e WhatsApp. Ficam fora do <main>: não são seções. -->
+<aside aria-label="Atalhos de compra e contato">
+<div class="sticky-cta" data-sticky>
+  <div class="sticky-cta__row">
+    <div class="sticky-cta__price">
+      <span class="sticky-cta__offer" data-offer-only>
+        <span class="price__word">de</span>
+        <s class="sticky-cta__old" data-price="cheio">R$ 147</s>
+        <span class="price__word">por</span>
+        <strong class="sticky-cta__new" data-price="oferta">R$ 97</strong>
+      </span>
+      <strong class="sticky-cta__full" data-full-only data-price="cheio" hidden>R$ 147</strong>
+    </div>
+    <a class="btn btn--sm" href="#oferta" data-checkout>Quero editar</a>
+  </div>
+  <p class="secure secure--xs"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg>Compra segura pela Kiwify • Acesso imediato • 7 dias de garantia</p>
+</div>
+
+<!-- WhatsApp flutuante: só aparece se WHATSAPP_NUMERO estiver preenchido -->
+<a class="whats" href="#" data-whats hidden target="_blank" rel="noopener" aria-label="Tirar dúvidas no WhatsApp (abre em nova aba)">
+  <svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>
+</a>
+</aside>
+
+</body>
+</html>

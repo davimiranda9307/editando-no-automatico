@@ -684,29 +684,6 @@
     });
   }
 
-  function renderNiches() {
-    var items = list(C.CLIENTES_NICHOS).map(str).filter(Boolean);
-    var block = showBlock('nichos', items.length > 0);
-    if (!block || !items.length) return;
-    var ul = $('[data-nichos-list]', block);
-    items.forEach(function (n) { ul.appendChild(el('li', null, n)); });
-  }
-
-  function renderBackstage() {
-    var items = list(C.BASTIDORES).filter(function (i) { return str(i.imagem); });
-    var block = showBlock('bastidores', items.length > 0);
-    if (!block || !items.length) return;
-    var grid = $('[data-bastidores-list]', block);
-    grid.style.setProperty('--cols', String(Math.min(items.length, 3)));
-    items.forEach(function (i, idx) {
-      var fig = el('figure', 'shot');
-      var caption = tokens(i.legenda);
-      fig.appendChild(makeMedia(str(i.imagem), caption ? 'Bastidores: ' + caption.replace(/\[[^\]]*\]/g, '').trim() : 'Bastidores do processo, print ' + (idx + 1), '', 1200, 750));
-      if (caption) fig.appendChild(el('figcaption', null, caption));
-      grid.appendChild(fig);
-    });
-  }
-
   function renderTestimonials() {
     var items = list(C.DEPOIMENTOS).filter(function (i) { return str(i.texto) || str(i.imagem); });
     var block = showBlock('depoimentos', items.length > 0);
@@ -716,9 +693,7 @@
       var fig = el('figure', 'testimonial card');
       var nome = str(i.nome);
       if (str(i.imagem)) {
-        var wrap = makeMedia(str(i.imagem), nome ? 'Depoimento de ' + nome : 'Depoimento', 'testimonial__print', 800, 1000);
-        wrap.style.aspectRatio = 'auto';
-        fig.appendChild(wrap);
+        fig.appendChild(makeMedia(str(i.imagem), nome ? 'Depoimento de ' + nome : 'Depoimento', 'testimonial__print', 800, 1000));
       }
       if (str(i.texto)) {
         var bq = el('blockquote');
@@ -803,6 +778,16 @@
         update();
       }).observe(t);
     });
+    // Some também quando um botão de compra da página está na tela,
+    // senão a barra fica por cima dele no celular e o clique não pega
+    $$('[data-checkout]').forEach(function (btn, i) {
+      if (bar.contains(btn)) return;
+      var key = 'cta' + i;
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { state.blocked[key] = e.isIntersecting; });
+        update();
+      }).observe(btn);
+    });
   }
 
   /* ==========================================================
@@ -869,8 +854,6 @@
   run(initCompare);
   run(renderTimeline);
   run(renderNumbers);
-  run(renderNiches);
-  run(renderBackstage);
   run(renderTestimonials);
   run(initContacts);
   run(initSticky);
